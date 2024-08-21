@@ -1,0 +1,157 @@
+ function createForm() {
+  // Crear el formulario
+  var form = FormApp.create('Marta');
+
+  // Sección inicial: Selección de idioma
+  form.addPageBreakItem().setTitle('Language Selection / Selección de Idioma');
+  var language = form.addMultipleChoiceItem();
+  language.setTitle('Please select your language / Por favor, seleccione su idioma')
+    .setChoices([
+      language.createChoice('English', FormApp.PageNavigationType.GO_TO_PAGE),
+      language.createChoice('Español', FormApp.PageNavigationType.GO_TO_PAGE)
+    ])
+    .setRequired(true);
+
+  // Punto de salto: Separar las secciones por idioma
+  var pageBreakEnglish = form.addPageBreakItem().setTitle('English Version');
+  var pageBreakSpanish = form.addPageBreakItem().setTitle('Versión en Español');
+
+  // Secciones en inglés
+  form.addPageBreakItem().setTitle('Presentation');
+  form.addParagraphTextItem().setTitle('Welcome to the Marta form').setHelpText('Please complete the requested information in each section.');
+
+  form.addPageBreakItem().setTitle('Task Type');
+  var taskTypeEn = form.addMultipleChoiceItem();
+  taskTypeEn.setTitle('What task would you like to perform?')
+    .setChoices([
+      taskTypeEn.createChoice('Purchase'),
+      taskTypeEn.createChoice('Purchase Follow-up'),
+      taskTypeEn.createChoice('Task')
+    ])
+    .setRequired(true);
+
+  form.addPageBreakItem().setTitle('Purchase');
+  form.addTextItem().setTitle('Order Number');
+  form.addTextItem().setTitle('Supplier');
+  form.addTextItem().setTitle('Product Name');
+  form.addTextItem().setTitle('UPC');
+  form.addTextItem().setTitle('Quantity');
+  
+  var moreProductsEn = form.addMultipleChoiceItem();
+  moreProductsEn.setTitle('Are there more products in the order?')
+    .setChoices([
+      moreProductsEn.createChoice('Yes'),
+      moreProductsEn.createChoice('No')
+    ])
+    .setRequired(true);
+  
+  var newOrderEn = form.addMultipleChoiceItem();
+  newOrderEn.setTitle('Is there a new order?')
+    .setChoices([
+      newOrderEn.createChoice('Yes'),
+      newOrderEn.createChoice('No')
+    ])
+    .setRequired(true);
+
+  form.addPageBreakItem().setTitle('Purchase Follow-up');
+  form.addTextItem().setTitle('Tracking Number');
+  form.addDateItem().setTitle('Estimated Arrival Date');
+  form.addTextItem().setTitle('Product Name');
+  form.addTextItem().setTitle('UPC');
+  form.addTextItem().setTitle('Quantity');
+  
+  var moreProductsFollowUpEn = form.addMultipleChoiceItem();
+  moreProductsFollowUpEn.setTitle('Does this order have more products?')
+    .setChoices([
+      moreProductsFollowUpEn.createChoice('Yes'),
+      moreProductsFollowUpEn.createChoice('No')
+    ])
+    .setRequired(true);
+  
+  var moreOrdersFollowUpEn = form.addMultipleChoiceItem();
+  moreOrdersFollowUpEn.setTitle('Is there another order?')
+    .setChoices([
+      moreOrdersFollowUpEn.createChoice('Yes'),
+      moreOrdersFollowUpEn.createChoice('No')
+    ])
+    .setRequired(true);
+
+  form.addPageBreakItem().setTitle('Tasks');
+  form.addTextItem().setTitle('Task Description');
+  form.addTextItem().setTitle('Responsible Person');
+  form.addTextItem().setTitle('Budget');
+  form.addDateItem().setTitle('Due Date');
+
+  // Secciones en español
+  form.addPageBreakItem().setTitle('Presentación');
+  form.addParagraphTextItem().setTitle('Bienvenido al formulario Marta').setHelpText('Por favor, complete la información solicitada en cada sección.');
+
+  form.addPageBreakItem().setTitle('Tipo de Tarea');
+  var taskTypeEs = form.addMultipleChoiceItem();
+  taskTypeEs.setTitle('¿Qué tarea desea realizar?')
+    .setChoices([
+      taskTypeEs.createChoice('Compra'),
+      taskTypeEs.createChoice('Seguimiento de compra'),
+      taskTypeEs.createChoice('Tarea')
+    ])
+    .setRequired(true);
+
+  form.addPageBreakItem().setTitle('Compra');
+  form.addTextItem().setTitle('Número de orden');
+  form.addTextItem().setTitle('Proveedor');
+  form.addTextItem().setTitle('Nombre del producto');
+  form.addTextItem().setTitle('UPC');
+  form.addTextItem().setTitle('Cantidad');
+  
+  var moreProductsEs = form.addMultipleChoiceItem();
+  moreProductsEs.setTitle('¿Tiene más productos en la orden?')
+    .setChoices([
+      moreProductsEs.createChoice('Sí'),
+      moreProductsEs.createChoice('No')
+    ])
+    .setRequired(true);
+  
+  var newOrderEs = form.addMultipleChoiceItem();
+  newOrderEs.setTitle('¿Tiene una nueva orden?')
+    .setChoices([
+      newOrderEs.createChoice('Sí'),
+      newOrderEs.createChoice('No')
+    ])
+    .setRequired(true);
+
+  form.addPageBreakItem().setTitle('Seguimiento de Compra');
+  form.addTextItem().setTitle('Número de seguimiento');
+  form.addDateItem().setTitle('Fecha estimada de arribo');
+  form.addTextItem().setTitle('Nombre del producto');
+  form.addTextItem().setTitle('UPC');
+  form.addTextItem().setTitle('Cantidad');
+  
+  var moreProductsFollowUpEs = form.addMultipleChoiceItem();
+  moreProductsFollowUpEs.setTitle('¿Esta orden tiene más productos?')
+    .setChoices([
+      moreProductsFollowUpEs.createChoice('Sí'),
+      moreProductsFollowUpEs.createChoice('No')
+    ])
+    .setRequired(true);
+  
+  var moreOrdersFollowUpEs = form.addMultipleChoiceItem();
+  moreOrdersFollowUpEs.setTitle('¿Tiene otra orden?')
+    .setChoices([
+      moreOrdersFollowUpEs.createChoice('Sí'),
+      moreOrdersFollowUpEs.createChoice('No')
+    ])
+    .setRequired(true);
+
+  form.addPageBreakItem().setTitle('Tareas');
+  form.addTextItem().setTitle('Descripción de la tarea');
+  form.addTextItem().setTitle('Encargado');
+  form.addTextItem().setTitle('Presupuesto');
+  form.addDateItem().setTitle('Fecha límite');
+
+  // Guardar el formulario
+  form.setConfirmationMessage('Thank you for your submission / Gracias por enviar su respuesta.');
+}
+
+
+
+ 
